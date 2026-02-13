@@ -67,6 +67,15 @@ const productSchema = mongoose.Schema(
   },
   {
     timestamps: true,
+    // FIX: Dagdag ito para sa "Timestamp Disclosure - Unix" alert
+    toJSON: {
+      transform: function (doc, ret) {
+        if (ret.createdAt) ret.createdAt = ret.createdAt.toISOString();
+        if (ret.updatedAt) ret.updatedAt = ret.updatedAt.toISOString();
+        delete ret.__v; // Itago na rin ang version key para sa extra security
+        return ret;
+      },
+    },
   }
 );
 

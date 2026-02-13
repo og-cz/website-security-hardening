@@ -75,6 +75,19 @@ const orderSchema = mongoose.Schema(
   },
   {
     timestamps: true,
+    // FIX: Para sa "Timestamp Disclosure - Unix" alert
+    toJSON: {
+      transform: function (doc, ret) {
+        // I-convert ang lahat ng Date fields sa ISO string format
+        if (ret.createdAt) ret.createdAt = ret.createdAt.toISOString();
+        if (ret.updatedAt) ret.updatedAt = ret.updatedAt.toISOString();
+        if (ret.paidAt) ret.paidAt = ret.paidAt.toISOString();
+        if (ret.deliveredAt) ret.deliveredAt = ret.deliveredAt.toISOString();
+        
+        delete ret.__v; // Itago ang version key
+        return ret;
+      },
+    },
   }
 );
 
