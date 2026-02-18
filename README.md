@@ -1,11 +1,20 @@
 
-# Server Hardening Implementation
+# Website Security Hardening
 
 To protect the ProShop application from common exploits and reduce its attack surface, we implemented the following industry-standard hardening techniques.
 
 ProShop is a full-featured eCommerce platform built with the MERN Stack (MongoDB, Express, React, Node.js). While it functions as a robust retail system, its primary objective is to demonstrate industry-standard web security, secure coding practices, and server hardening.
 
----
+## Vulnerability Assessment (OWASP ZAP)
+
+### Before:
+<img src="_README/BEFORE (1).jpg" alt="_README/BEFORE (1).jpg" width="70%">
+
+### After:
+<img src="_README/AFTER (1).png" alt="_README/AFTER (1).png" width="50%">
+
+
+# Server Hardening Implementation
 
 ### 1. HTTP Header Protection
 
@@ -41,16 +50,3 @@ Since we use JWT (JSON Web Tokens) for sessions, we hardened the storage mechani
 * Environment Variables: Kept all sensitive keys (JWT Secret, MongoDB URI, PayPal Client ID) in `.env` files, ensuring they are never hardcoded or pushed to version control.
 * Production Error Suppression: Configured a centralized error handler that sends generic messages to the user while logging full stack traces only on the server, preventing Information Disclosure.
 
----
-
-Next Step: Would you like me to provide the specific code snippets for the `Helmet` and `Cookie` configurations we used?
-
-## Vulnerability Assessment (OWASP ZAP)
-
-### Before:
-
-<img src="_README/01-OWASP.png" alt="01-OWASP IMAGE" width="70%">
-
-### After: 
-
-<img src="" alt="">
